@@ -26,7 +26,7 @@ int main() {
     scanf("%d", &l);
     l -= 1;
 
-    if (l == n - 1 || arr[l] + 1 == arr[l + 1]) continue;
+    if (arr[l] == n || arr[l] + 1 == arr[l + 1]) continue;
     arr[l] += 1;
   }
 
