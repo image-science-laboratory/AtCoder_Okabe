@@ -1,11 +1,13 @@
 #include <cmath>
+#include <iomanip>
 #include <iostream>
+#include <limits>
 #include <map>
 #include <queue>
 #include <string>
 #include <unordered_map>
 #include <vector>
-const double PI = 3.14159265358979;
+const double PI = 3.141592653589793;
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 typedef long long int ll;
 using namespace std;
@@ -15,9 +17,9 @@ int main() {
   cin >> a >> b >> d;
 
   double th = atan2(b, a);
-  th = fmod(th + d / 180.0 * PI, 2 * PI);
+  th = th + d / 180.0 * PI;
   double r = sqrt(a * a + b * b);
 
-  cout << r * cos(th) << " " << r * sin(th) << endl;
-  return 0;
+  cout << fixed << setprecision(10) << r * cos(th) << " " << r * sin(th)
+       << endl;
 }
