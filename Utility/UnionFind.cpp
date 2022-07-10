@@ -47,14 +47,14 @@ class UnionFind {
   //素集合をそれぞれグループ化
   void grouping() {
     //経路圧縮を先に行う
-    REP(i, n) root(i);
+    rep(i, n) root(i);
     // mapで管理する(デフォルト構築を利用)
-    REP(i, n) group[parent[i]].PB(i);
+    rep(i, n) group[parent[i]].emplace_back(i);
   }
 
   //素集合系を削除して初期化
   void clear() {
-    REP(i, n) { parent[i] = i; }
+    rep(i, n) { parent[i] = i; }
     siz = vector<ll>(n, 1);
     group.clear();
   }
