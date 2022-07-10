@@ -1,3 +1,5 @@
+#include "../_CppTemplate.cpp"
+
 class UnionFind {
  public:
   vector<ll> parent;  // parent[i]‚Íi‚Ìe
