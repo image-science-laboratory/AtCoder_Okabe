@@ -9,4 +9,8 @@
 typedef long long int ll;
 using namespace std;
 
-int main() { return 0; }
+int main() {
+  int n;
+
+  return 0;
+}
