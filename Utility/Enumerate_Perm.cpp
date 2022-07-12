@@ -43,7 +43,8 @@ void foreach_permutation(int n, int k, std::function<void(int *)> f) {
 }
 
 int main() {
-  foreach_permutation(4, 2, [](int *indexes) {
-    std::cout << indexes[0] << ',' << indexes[1] << std::endl;
+  foreach_permutation(5, 3, [](int *indexes) {
+    std::cout << indexes[0] << ',' << indexes[1] << "," << indexes[2]
+              << std::endl;
   });
 }
