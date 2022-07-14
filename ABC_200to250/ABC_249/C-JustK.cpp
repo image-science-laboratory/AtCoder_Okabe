@@ -36,6 +36,26 @@ void foreach_comb(int n, int k, std::function<void(int *)> f) {
 int main() {
   int n, k;
   cin >> n >> k;
+  int ans = 0;
+  vector<string> strs(n);
+  rep(i, n) { cin >> strs[i]; }
+
+  for (int i = 1; i <= n; ++i) {
+    foreach_comb(n, i, [&i, &k, &ans, &strs](int *indexes) {
+      int *counts = new int[30]{0};
+      rep(j, i) {
+        string str = strs[indexes[j]];
+        rep(k, str.size()) { counts[str[k] - 'a'] += 1; }
+      }
+
+      int count = 0;
+      rep(j, 27) {
+        if (counts[j] == k) count += 1;
+      }
+      ans = max(ans, count);
+    });
+  }
+  cout << ans << endl;
 
   return 0;
 }
