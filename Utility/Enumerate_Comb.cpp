@@ -20,8 +20,13 @@ void foreach_comb(int n, int k, std::function<void(int *)> f) {
 }
 
 int main() {
-  foreach_comb(5, 3, [](int *indexes) {
-    std::cout << indexes[0] << ',' << indexes[1] << ',' << indexes[2]
-              << std::endl;
-  });
+  long long count = 0;
+  for (int i = 1; i <= 15; ++i) {
+    foreach_comb(15, i, [&count](int *indexes) {
+      // std::cout << indexes[0] << ',' << indexes[1] << ',' << indexes[2]
+      // << std::endl;
+      count += 1;
+    });
+  }
+  std::cout << count << std::endl;
 }
