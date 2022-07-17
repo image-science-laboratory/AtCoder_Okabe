@@ -27,10 +27,16 @@ int main() {
     for (int x = 0; x < n; ++x) {
       for (int mm = 1; mm <= m; ++mm) {
         if (y + mm > k) continue;
-        dp[y + mm][x + 1] += dp[y][x];
+        dp[y + mm][x + 1] = (dp[y + mm][x + 1] + dp[y][x]) % MOD;
       }
     }
   }
 
+  // ll ans = 0;
+  // for (int i = 0; i <= k; ++i) {
+  //   ans += dp[i][n];
+  // }
+  // cout << ans << endl;
+  cout << dp[k][n] << endl;
   return 0;
 }
