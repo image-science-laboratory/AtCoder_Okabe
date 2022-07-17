@@ -19,23 +19,11 @@ int main() {
   int n;
   cin >> n;
   int *arr = new int[n];
-  rep(i, n) scanf("%d", &arr[i]);
-
-  int range = 2 * 100000 + 10;
-  int **prefix = new int *[range];
-  rep(i, range) prefix[i] = new int[n + 1]{0};
-
-  rep(j, n) {
-    rep(i, range) { prefix[i][j + 1] = prefix[i][j]; }
-    prefix[arr[j]][j + 1] += 1;
+  vector<vector<int>> vec(n + 1);
+  rep(i, n) {
+    scanf("%d", &arr[i]);
+    vec[arr[i]].emplace_back(i);
   }
-
-  // rep(i, 10) {
-  //   cout << i << " : ";
-  //   rep(j, n + 1) cout << prefix[i][j] << " ";
-  //   cout << endl;
-  // }
-  // return 0;
 
   int q;
   cin >> q;
@@ -43,7 +31,9 @@ int main() {
     int l, r, x;
     scanf("%d %d %d", &l, &r, &x);
 
-    cout << prefix[x][r] - prefix[x][l - 1] << endl;
+    auto li = lower_bound(vec[x].begin(), vec[x].end(), l - 1);
+    auto ri = lower_bound(vec[x].begin(), vec[x].end(), r);
+    cout << ri - li << endl;
   }
 
   return 0;
