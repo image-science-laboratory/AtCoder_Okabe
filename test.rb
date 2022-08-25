@@ -1,1 +1,1 @@
-puts 15 * 14 * 13 / 6
+p (0..9).to_a.combination(2).to_a
