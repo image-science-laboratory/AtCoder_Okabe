@@ -16,8 +16,14 @@ AlignOperands: true
 # 連続する行のコメントの位置揃える
 AlignTrailingComments: true
 
-# 短い関数を単一行にしない
-AllowShortFunctionsOnASingleLine: None
+# 短いcaseを単一行にする
+AllowShortCaseLabelsOnASingleLine: true
+
+# 短いifを単一業にする
+AllowShortIfStatementsOnASingleLine: true 
+
+# 短い関数を単一行にする
+AllowShortFunctionsOnASingleLine: true
 
 # { } の位置
 # "BreakBeforeBraces: Custom" の場合に有効となる
