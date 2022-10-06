@@ -40,7 +40,7 @@ BraceWrapping:
     
 
 # { } の位置をカスタム設定する
-BreakBeforeBraces: Custom
+BreakBeforeBraces: Attach
 
 # 1行の文字数を制限する (0で無制限)
 ColumnLimit: 0
