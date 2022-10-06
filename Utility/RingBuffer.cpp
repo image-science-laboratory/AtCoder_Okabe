@@ -1,48 +1,62 @@
 #include "../_CppTemplate.cpp"
 
+// バグがあるかも
+
 class RingBuffer {
- public:
-  ll max_size = 100000000;  // 10^8
-  ll* buff;
-  ll top = 0;
-  ll bottom = 0;
-  ll size = 0;
+  public:
+    ll  max_size = 100000000; // 10^8
+    ll *buff;
+    ll  top    = 0;
+    ll  bottom = 0;
+    ll  size   = 0;
 
-  RingBuffer() { buff = new ll[max_size]; }
-  RingBuffer(ll n) {
-    buff = new ll[n];
-    max_size = n;
-  }
+    RingBuffer() { buff = new ll[max_size]; }
+    RingBuffer(ll n) {
+        buff     = new ll[n];
+        max_size = n;
+    }
 
-  void push_back(ll n) {
-    bottom = (bottom + 1) % max_size;
-    buff[bottom] = n;
-    size += 1;
-  }
+    ll back() { return buff[bottom]; }
 
-  void push_front(ll n) {
-    top = (top - 1) % max_size;
-    if (top < 0) top = max_size + top;
-    buff[top] = n;
-    size += 1;
-  }
+    ll front() { return buff[top]; }
 
-  ll pop_back() {
-    ll ret = buff[bottom];
-    bottom = (bottom - 1) % max_size;
-    if (bottom < 0) bottom = max_size + bottom;
-    size -= 1;
-    return ret;
-  }
+    void push_back(ll n) {
+        buff[bottom] = n;
+        bottom       = (bottom + 1) % max_size;
+        if (top == bottom) call_error();
+        size += 1;
+    }
 
-  ll pop_front() {
-    ll ret = buff[top];
-    top = (top + 1) % max_size;
-    size -= 1;
-    return ret;
-  }
+    void push_front(ll n) {
+        buff[top] = n;
+        top       = top > 0 ? top - 1 : max_size - 1;
+        if (top == bottom) call_error();
+        size += 1;
+    }
 
-  ll back() { return buff[bottom]; }
+    ll pop_back() {
+        if (size == 0) call_error();
 
-  ll front() { return buff[top]; }
-}
+        bottom = bottom > 0 ? bottom - 1 : max_size - 1;
+        ll ret = buff[bottom];
+        if (bottom < 0) bottom = max_size + bottom;
+        size -= 1;
+        return ret;
+    }
+
+    ll pop_front() {
+        if (size == 0) call_error();
+
+        ll ret = buff[top];
+        top    = (top + 1) % max_size;
+        size -= 1;
+        return ret;
+    }
+
+    void call_error() {
+        if (bottom == top) {
+            cout << "Error : 要素数エラー" << endl;
+            exit(0);
+        }
+    }
+};
