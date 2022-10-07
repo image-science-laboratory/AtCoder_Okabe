@@ -183,5 +183,28 @@ int main() {
         deque.push_back(manga[i]);
     }
 
-    deque.show();
+    ll hoge = -1;
+    for (int i = 1; true; ++i) {
+        if ((deque.size == 0) || (deque.size == 1 && deque.front() != i)) {
+            cout << i - 1 << endl;
+            return 0;
+        }
+
+        if (deque.front() != i) {
+            if (deque.size <= 2) {
+                cout << i - 1 << endl;
+                return 0;
+            }
+
+            deque.pop_back();
+            deque.pop_back();
+        } else {
+            deque.pop_front();
+            while (deque.front() == i) {
+                deque.pop_front();
+                deque.push_back(hoge);
+                hoge -= 1;
+            }
+        }
+    }
 }
