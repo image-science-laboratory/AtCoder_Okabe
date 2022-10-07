@@ -1,1 +1,7 @@
-p (0..9).to_a.combination(2).to_a
+a = [1, 2, 3, 4, 5]
+
+p a 
+a.shift 
+p a 
+a.pop
+p
