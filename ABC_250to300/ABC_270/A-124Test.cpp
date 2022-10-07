@@ -20,24 +20,18 @@ typedef vector<vector<ll>>         vvll;
 typedef vector<vector<vector<ll>>> vvvll;
 
 int main() {
-    ll  n;
-    vll manga(n);
-    rep(i, n) scanf("%lld", &manga[i]);
+    ll a, b;
+    cin >> a >> b;
 
-    vll syozi(n + 1, 0);
-    rep(i, n) {
-        syozi[manga[i]] += 1;
-    }
-
-    ll right = n;
-    ll left  = 0;
-    while (left <= right) {
-        if (syozi[left] == 1) {
-            left += 1;
-            continue;
-        } else if (syozi[left] == 0) {
-        }
-    }
+    ll c = 0;
+    if (a & 1 || b & 1) c += 1;
+    a >>= 1;
+    b >>= 1;
+    if (a & 1 || b & 1) c += 2;
+    a >>= 1;
+    b >>= 1;
+    if (a & 1 || b & 1) c += 4;
+    cout << c << endl;
 
     return 0;
 }
