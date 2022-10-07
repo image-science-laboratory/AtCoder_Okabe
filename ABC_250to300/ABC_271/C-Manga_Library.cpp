@@ -34,7 +34,7 @@ int main() {
         deq.push_back(manga[i]);
     }
 
-    ll cnt = 10;
+    ll cnt = -1;
     for (int i = 1; true; ++i) {
         // cout << "size:" << deq.size() << " ";
         // for (auto it : deq)
@@ -45,6 +45,10 @@ int main() {
             cout << i - 1 << endl;
             return 0;
         }
+        if (deq.front() != i && deq.size() == 2) {
+            cout << i << endl;
+            return 0;
+        }
 
         if (deq.front() != i) {
             deq.pop_back();
@@ -53,8 +57,8 @@ int main() {
             deq.pop_front();
             while (deq.front() == i) {
                 deq.pop_front();
-                deq.push_back(pow(10, 9) + cnt);
-                cnt += 1;
+                deq.push_back(cnt);
+                cnt -= 1;
             }
         }
     }

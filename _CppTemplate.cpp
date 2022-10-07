@@ -19,8 +19,7 @@ typedef vector<ll>                 vll;
 typedef vector<vector<ll>>         vvll;
 typedef vector<vector<vector<ll>>> vvvll;
 
-int main()
-{
+int main() {
     ll n;
 
     return 0;
