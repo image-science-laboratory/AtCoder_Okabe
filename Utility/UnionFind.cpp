@@ -1,61 +1,41 @@
-#include "../_CppTemplate.cpp"
+#include <iostream>
+#include <vector>
+using namespace std;
 
-class UnionFind {
- public:
-  vector<ll> parent;  // parent[i]‚Íi‚Ìe
-  vector<ll> siz;     //‘fW‡‚ÌƒTƒCƒY‚ğ•\‚·”z—ñ(1‚Å‰Šú‰»)
-  map<ll, vector<ll>>
-      group;  //W‡‚²‚Æ‚ÉŠÇ—‚·‚é(key:W‡‚Ì‘ã•\Œ³Avalue:W‡‚Ì—v‘f‚Ì”z—ñ)
-  ll n;       //—v‘f”
+// Union-Find
+struct UnionFind {
+    vector<int> par, rank, siz;
 
-  //ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-  UnionFind(ll n_) : n(n_), parent(n_), siz(n_, 1) {
-    //‘S‚Ä‚Ì—v‘f‚Ìª‚ª©g‚Å‚ ‚é‚Æ‚µ‚Ä‰Šú‰»
-    for (ll i = 0; i < n; i++) {
-      parent[i] = i;
+    // æ§‹é€ ä½“ã®åˆæœŸåŒ–
+    UnionFind(int n) : par(n, -1), rank(n, 0), siz(n, 1) {}
+
+    // æ ¹ã‚’æ±‚ã‚ã‚‹
+    int root(int x) {
+        if (par[x] == -1)
+            return x; // x ãŒæ ¹ã®å ´åˆã¯ x ã‚’è¿”ã™
+        else
+            return par[x] = root(par[x]); // çµŒè·¯åœ§ç¸®
     }
-  }
 
-  //ƒf[ƒ^x‚Ì‘®‚·‚é–Ø‚Ìª‚ğæ“¾(Œo˜Hˆ³k‚às‚¤)
-  ll root(ll x) {
-    if (parent[x] == x) return x;
-    return parent[x] = root(
-               parent[x]);  //‘ã“ü®‚Ì’l‚Í‘ã“ü‚µ‚½•Ï”‚Ì’l‚È‚Ì‚ÅAŒo˜Hˆ³k‚Å‚«‚é
-  }
+    // x ã¨ y ãŒåŒã˜ã‚°ãƒ«ãƒ¼ãƒ—ã«å±ã™ã‚‹ã‹ (= æ ¹ãŒä¸€è‡´ã™ã‚‹ã‹)
+    bool issame(int x, int y) {
+        return root(x) == root(y);
+    }
 
-  // x‚Æy‚Ì–Ø‚ğ•¹‡
-  void unite(ll x, ll y) {
-    ll rx = root(x);       // x‚Ìª
-    ll ry = root(y);       // y‚Ìª
-    if (rx == ry) return;  //“¯‚¶–Ø‚É‚ ‚é
-    //¬‚³‚¢W‡‚ğ‘å‚«‚¢W‡‚Ö‚Æ•¹‡(ry¨rx‚Ö•¹‡)
-    if (siz[rx] < siz[ry]) swap(rx, ry);
-    siz[rx] += siz[ry];
-    parent[ry] = rx;  // x‚Æy‚ª“¯‚¶–Ø‚É‚È‚¢‚Íy‚Ìªry‚ğx‚Ìªrx‚É‚Â‚¯‚é
-  }
+    // x ã‚’å«ã‚€ã‚°ãƒ«ãƒ¼ãƒ—ã¨ y ã‚’å«ã‚€ã‚°ãƒ«ãƒ¼ãƒ—ã‚’ä½µåˆã™ã‚‹
+    bool unite(int x, int y) {
+        int rx = root(x), ry = root(y); // x å´ã¨ y å´ã®æ ¹ã‚’å–å¾—ã™ã‚‹
+        if (rx == ry) return false;     // ã™ã§ã«åŒã˜ã‚°ãƒ«ãƒ¼ãƒ—ã®ã¨ãã¯ä½•ã‚‚ã—ãªã„
+        // union by rank
+        if (rank[rx] < rank[ry]) swap(rx, ry); // ry å´ã® rank ãŒå°ã•ããªã‚‹ã‚ˆã†ã«ã™ã‚‹
+        par[ry] = rx;                          // ry ã‚’ rx ã®å­ã¨ã™ã‚‹
+        if (rank[rx] == rank[ry]) rank[rx]++;  // rx å´ã® rank ã‚’èª¿æ•´ã™ã‚‹
+        siz[rx] += siz[ry];                    // rx å´ã® siz ã‚’èª¿æ•´ã™ã‚‹
+        return true;
+    }
 
-  // x‚Æy‚ª‘®‚·‚é–Ø‚ª“¯‚¶‚©‚ğ”»’è
-  bool same(ll x, ll y) {
-    ll rx = root(x);
-    ll ry = root(y);
-    return rx == ry;
-  }
-
-  // x‚Ì‘fW‡‚ÌƒTƒCƒY‚ğæ“¾
-  ll size(ll x) { return siz[root(x)]; }
-
-  //‘fW‡‚ğ‚»‚ê‚¼‚êƒOƒ‹[ƒv‰»
-  void grouping() {
-    //Œo˜Hˆ³k‚ğæ‚És‚¤
-    rep(i, n) root(i);
-    // map‚ÅŠÇ—‚·‚é(ƒfƒtƒHƒ‹ƒg\’z‚ğ—˜—p)
-    rep(i, n) group[parent[i]].emplace_back(i);
-  }
-
-  //‘fW‡Œn‚ğíœ‚µ‚Ä‰Šú‰»
-  void clear() {
-    rep(i, n) { parent[i] = i; }
-    siz = vector<ll>(n, 1);
-    group.clear();
-  }
+    // x ã‚’å«ã‚€æ ¹ä»˜ãæœ¨ã®ã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã‚‹
+    int size(int x) {
+        return siz[root(x)];
+    }
 };
