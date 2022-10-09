@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <cmath>
+#include <deque>
 #include <functional>
 #include <iomanip>
 #include <iostream>
@@ -7,6 +8,7 @@
 #include <map>
 #include <numeric>
 #include <queue>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <vector>
