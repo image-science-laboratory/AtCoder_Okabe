@@ -41,15 +41,14 @@ stack<ll> dfs(ll index, ll y, stack<ll> &route, const vvll &tree) {
         exit(0);
     }
 
-    rep(i, tree.size()) {
+    rep(i, tree[index].size()) {
+        ll hoge = tree[index][i];
         // 同じ道は通らない
-        if (dic.find(i) != dic.end()) continue;
+        if (dic.find(hoge) != dic.end()) continue;
 
-        // 道がないと通らない
-        if (tree[index][i] == 0) continue;
-
-        dfs(i, y, route, tree);
+        dfs(hoge, y, route, tree);
     }
+
     route.pop();
     return route;
 }
@@ -59,8 +58,8 @@ int main() {
     cin >> n >> x >> y;
     x -= 1;
     y -= 1;
-    cout << n << x << y << endl;
-    vvll tree(n, vll(n, 0));
+    // cout << n << x << y << endl;
+    vvll tree(n);
     for (int i = 0; i < n - 1; ++i) {
         ll u, v;
         // cout << " scanf ";
@@ -69,10 +68,10 @@ int main() {
         u -= 1;
         v -= 1;
 
-        cout << "i:" << i << endl;
+        // cout << "i:" << i << endl;
 
-        tree[u][v] = 1;
-        tree[v][u] = 1;
+        tree[u].emplace_back(v);
+        tree[v].emplace_back(u);
     }
 
     stack<ll> route;
