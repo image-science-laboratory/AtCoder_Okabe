@@ -26,7 +26,6 @@ double round_n(double number, int n) {
 
     else {
         number = number * pow(10, n);
-        cout << number << endl;
         number = round(number);
         number = number * pow(10, -1 * n);
         return number;
