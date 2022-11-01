@@ -22,9 +22,10 @@ typedef vector<vector<ll>>         vvll;
 typedef vector<vector<vector<ll>>> vvvll;
 
 int main() {
-    ll a, b;
-    cin >> a >> b;
-    cout << a - b << endl;
+    double deg, dis;
+    cin >> deg >> dis;
+    deg /= 10.0;
+    dis /= 60.0;
 
     return 0;
 }

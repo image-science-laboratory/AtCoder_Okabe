@@ -22,9 +22,21 @@ typedef vector<vector<ll>>         vvll;
 typedef vector<vector<vector<ll>>> vvvll;
 
 int main() {
-    ll a, b;
-    cin >> a >> b;
-    cout << a - b << endl;
+    double m;
+    cin >> m;
+    m /= 1000;
+
+    if (m < 0.1) {
+        cout << "00" << endl;
+    } else if (m <= 5) {
+        printf("%02ld\n", (ll)(m * 10));
+    } else if (m <= 30) {
+        printf("%02ld\n", (ll)(m + 50));
+    } else if (m <= 70) {
+        printf("%02ld\n", (ll)((m - 30) / 5 + 80));
+    } else {
+        cout << 89 << endl;
+    }
 
     return 0;
 }
