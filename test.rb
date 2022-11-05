@@ -1,5 +1,7 @@
-a = [1,1,1,2,2,3,]
+a = [[1,2,3], [2,3,4]]
 
-aa = a.group_by(&:itself).to_a
-p aa 
-p aa.length 
+b = a.map(&:dup)
+b[0][0] = 334
+
+p a  
+p b
