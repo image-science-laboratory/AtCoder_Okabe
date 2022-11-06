@@ -1,41 +1,20 @@
-#include <cmath>
-#include <iomanip>
+#include <algorithm>
+#include <functional>
+
 #include <iostream>
-#include <limits>
-#include <map>
-#include <queue>
-#include <string>
-#include <unordered_map>
-#include <vector>
-const double PI = 3.141592653589793;
-#define rep(i, n) for (int i = 0; i < (int)(n); i++)
-typedef long long int ll;
-using namespace std;
 
-/* 小数点n以下で四捨五入する */
-double round_n(double number, int n) {
-    if (n == 0)
-        return number;
-
-    else if (n > 0) {
-        number = number * pow(10, n - 1); // 四捨五入したい値を10の(n-1)乗倍する。
-        number = round(number);           // 小数点以下を四捨五入する。
-        number /= pow(10, n - 1);         // 10の(n-1)乗で割る。
-        return number;
-    }
-
-    else {
-        number = number * pow(10, n);
-        cout << number << endl;
-        number = round(number);
-        number = number * pow(10, -1 * n);
-        return number;
-    }
+// nPn邵ｺ?ｽｮ鬯??ｿｽ陋ｻ蜉ｱ竊楢汞?ｽｾ邵ｺ蜉ｱ窶ｻ陷??ｽｦ騾??ｿｽ郢ｧ雋橸ｽｮ貅ｯ?ｽ｡蠕娯??郢ｧ?ｿｽ
+void foreach_permutation(int n, std::function<void(int *)> f) {
+    int indexes[n];
+    for (int i = 0; i < n; i++)
+        indexes[i] = i;
+    do {
+        f(indexes);
+    } while (std::next_permutation(indexes, indexes + n));
 }
 
 int main() {
-    double hoge = 267.6005;
-    cout << round_n(hoge, 4) << endl;
-    cout << round_n(hoge, -2) << endl;
-    return 0;
+    foreach_permutation(3, [](int *indexes) {
+        std::cout << indexes[0] << ',' << indexes[1] << ',' << indexes[2] << std::endl;
+    });
 }

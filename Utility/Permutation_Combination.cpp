@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-// nPnã®é †åˆ—ã«å¯¾ã—ã¦å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
+// nPn‚Ì‡—ñ‚É‘Î‚µ‚Äˆ—‚ğÀs‚·‚é
 void foreach_permutation(int n, std::function<void(int *)> f) {
     int indexes[n];
     for (int i = 0; i < n; i++)
@@ -32,7 +32,7 @@ void recursive_comb(int *indexes, int s, int rest, std::function<void(int *)> f)
     }
 }
 
-// nCkã®çµ„ã¿åˆã‚ã›ã«å¯¾ã—ã¦å‡¦ç†ã‚’å®Ÿè¡Œã™ã‚‹
+// nCk‚Ì‘g‚İ‡‚í‚¹‚É‘Î‚µ‚Äˆ—‚ğÀs‚·‚é
 void foreach_comb(int n, int k, std::function<void(int *)> f) {
     int indexes[k];
     recursive_comb(indexes, n - 1, k, f);
