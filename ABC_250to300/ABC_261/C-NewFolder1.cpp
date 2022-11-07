@@ -31,32 +31,28 @@ typedef vector<vector<vector<float>>>  vvvf;
 typedef vector<double>                 vd;
 typedef vector<vector<double>>         vvd;
 typedef vector<vector<vector<double>>> vvvd;
-typedef pair<ll, ll>                   pii;
-typedef pair<ll, string>               pis;
-typedef pair<string, ll>               psi;
 typedef vector<string>                 vs;
+typedef vector<vector<string>>         vvs;
+typedef pair<ll, ll>                   pll;
+typedef pair<ll, string>               pls;
+typedef pair<string, ll>               psl;
 
 int main() {
     ll n;
     cin >> n;
 
-    vs table(n);
-    rep(i, n) cin >> table[i];
-
+    unordered_map<string, int> hash;
+    string                     str;
     rep(i, n) {
-        rep(j, n) {
-            // cout << "i:" << i << " j:" << j << endl;
-            if (i == j) continue;
-            bool flag = true;
-            if (table[i][j] == 'D' && table[j][i] != 'D') flag = false;
-            if (table[i][j] != 'D' && table[j][i] != 'D' && table[i][j] == table[j][i]) flag = false;
-            if (flag == false) {
-                cout << "incorrect" << endl;
-                return 0;
-            }
+        cin >> str;
+        if (hash.find(str) == hash.end()) {
+            cout << str << endl;
+            hash[str] = 1;
+        } else {
+            cout << str << "(" << hash[str] << ")" << endl;
+            hash[str] += 1;
         }
     }
-    cout << "correct" << endl;
 
     return 0;
 }
