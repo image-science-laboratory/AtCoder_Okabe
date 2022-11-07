@@ -31,9 +31,11 @@ typedef vector<vector<vector<float>>>  vvvf;
 typedef vector<double>                 vd;
 typedef vector<vector<double>>         vvd;
 typedef vector<vector<vector<double>>> vvvd;
-typedef pair<ll, ll>                   pii;
-typedef pair<ll, string>               pis;
-typedef pair<string, ll>               psi;
+typedef vector<string>                 vs;
+typedef vector<vector<string>>         vvs;
+typedef pair<ll, ll>                   pll;
+typedef pair<ll, string>               pls;
+typedef pair<string, ll>               psl;
 
 int main() {
     ll n;
