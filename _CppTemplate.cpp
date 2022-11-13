@@ -8,6 +8,7 @@
 #include <map>
 #include <numeric>
 #include <queue>
+#include <set>
 #include <stack>
 #include <string>
 #include <unordered_map>
@@ -36,6 +37,9 @@ typedef vector<vector<string>>         vvs;
 typedef pair<ll, ll>                   pll;
 typedef pair<ll, string>               pls;
 typedef pair<string, ll>               psl;
+typedef pair<int, int>                 pii;
+typedef pair<int, string>              pis;
+typedef pair<string, int>              psi;
 
 int main() {
     ll n;
