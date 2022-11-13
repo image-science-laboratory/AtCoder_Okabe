@@ -1,41 +1,55 @@
 #include <iostream>
+#include <utility> // std::swap()
 #include <vector>
-using namespace std;
 
-// Union-Find
-struct UnionFind {
-    vector<int> par, rank, siz;
+// Union-Find –Ø (1.4 ‚‘¬‰» + Èƒƒ‚ƒŠ‰»)
+typedef long long int uf_type;
+class UnionFind {
+  public:
+    UnionFind() = default;
 
-    // æ§‹é€ ä½“ã®åˆæœŸåŒ–
-    UnionFind(int n) : par(n, -1), rank(n, 0), siz(n, 1) {}
+    // n ŒÂ‚Ì—v‘f
+    explicit UnionFind(size_t n)
+        : m_parentsOrSize(n, -1) {}
 
-    // æ ¹ã‚’æ±‚ã‚ã‚‹
-    int root(int x) {
-        if (par[x] == -1)
-            return x; // x ãŒæ ¹ã®å ´åˆã¯ x ã‚’è¿”ã™
-        else
-            return par[x] = root(par[x]); // çµŒè·¯åœ§ç¸®
+    // i ‚Ì root ‚ğ•Ô‚·
+    uf_type find(uf_type i) {
+        if (m_parentsOrSize[i] < 0) {
+            return i;
+        }
+
+        // Œo˜Hˆ³k
+        return (m_parentsOrSize[i] = find(m_parentsOrSize[i]));
     }
 
-    // x ã¨ y ãŒåŒã˜ã‚°ãƒ«ãƒ¼ãƒ—ã«å±ã™ã‚‹ã‹ (= æ ¹ãŒä¸€è‡´ã™ã‚‹ã‹)
-    bool issame(int x, int y) {
-        return root(x) == root(y);
+    // a ‚Ì–Ø‚Æ b ‚Ì–Ø‚ğ“‡
+    void merge(uf_type a, uf_type b) {
+        a = find(a);
+        b = find(b);
+
+        if (a != b) {
+            // union by size (¬‚³‚¢‚Ù‚¤‚ªq‚É‚È‚éj
+            if (-m_parentsOrSize[a] < -m_parentsOrSize[b]) {
+                std::swap(a, b);
+            }
+
+            m_parentsOrSize[a] += m_parentsOrSize[b];
+            m_parentsOrSize[b] = a;
+        }
     }
 
-    // x ã‚’å«ã‚€ã‚°ãƒ«ãƒ¼ãƒ—ã¨ y ã‚’å«ã‚€ã‚°ãƒ«ãƒ¼ãƒ—ã‚’ä½µåˆã™ã‚‹
-    bool unite(int x, int y) {
-        int rx = root(x), ry = root(y); // x å´ã¨ y å´ã®æ ¹ã‚’å–å¾—ã™ã‚‹
-        if (rx == ry) return false;     // ã™ã§ã«åŒã˜ã‚°ãƒ«ãƒ¼ãƒ—ã®ã¨ãã¯ä½•ã‚‚ã—ãªã„
-        // union by rank
-        if (rank[rx] < rank[ry]) swap(rx, ry); // ry å´ã® rank ãŒå°ã•ããªã‚‹ã‚ˆã†ã«ã™ã‚‹
-        par[ry] = rx;                          // ry ã‚’ rx ã®å­ã¨ã™ã‚‹
-        if (rank[rx] == rank[ry]) rank[rx]++;  // rx å´ã® rank ã‚’èª¿æ•´ã™ã‚‹
-        siz[rx] += siz[ry];                    // rx å´ã® siz ã‚’èª¿æ•´ã™ã‚‹
-        return true;
+    // a ‚Æ b ‚ª“¯‚¶–Ø‚É‘®‚·‚©‚ğ•Ô‚·
+    bool connected(uf_type a, uf_type b) {
+        return (find(a) == find(b));
     }
 
-    // x ã‚’å«ã‚€æ ¹ä»˜ãæœ¨ã®ã‚µã‚¤ã‚ºã‚’æ±‚ã‚ã‚‹
-    int size(int x) {
-        return siz[root(x)];
+    // i ‚ª‘®‚·‚éƒOƒ‹[ƒv‚Ì—v‘f”‚ğ•Ô‚·
+    uf_type size(uf_type i) {
+        return -m_parentsOrSize[find(i)];
     }
+
+  private:
+    // m_parentsOrSize[i] ‚Í i ‚Ì e,
+    // ‚½‚¾‚µ root ‚Ìê‡‚Í (-1 * ‚»‚ÌƒOƒ‹[ƒv‚É‘®‚·‚é—v‘f”)
+    std::vector<uf_type> m_parentsOrSize;
 };
