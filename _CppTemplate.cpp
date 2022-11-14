@@ -42,7 +42,8 @@ typedef pair<int, string>              pis;
 typedef pair<string, int>              psi;
 
 int main() {
-    ll n;
+    bool debug = true;
+    ll   n;
 
     return 0;
 }
