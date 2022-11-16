@@ -19,6 +19,8 @@ const double PI = 3.141592653589793;
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 #define mod107(m) m % 1000000007
 #define mod998(m) m % 998244353
+#define m107      1000000007
+#define m998      998244353
 typedef long long int                  ll;
 typedef vector<ll>                     vll;
 typedef vector<vector<ll>>             vvll;
