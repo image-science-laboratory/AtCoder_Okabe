@@ -1,3 +1,7 @@
+// デバッグあってもなくても速度変わらんかったです(diff 1ms)
+// → debugの値はコンパイラの静的解析によって定数として扱われる？
+// → ifの分岐が確定するのでコンパイル時にif文を削除してそう
+
 #include <algorithm>
 #include <cmath>
 #include <deque>
@@ -86,8 +90,7 @@ typedef unordered_map<ll, string>      umls;
 typedef unordered_map<string, ll>      umsl;
 
 int main() {
-    bool debug = false;
-    ll   height, width, n, h, w;
+    ll height, width, n, h, w;
     cin >> height >> width >> n >> h >> w;
 
     // マスを作って数え上げ
@@ -106,12 +109,6 @@ int main() {
         }
     }
 
-    if (debug) {
-        for (auto it = zentai_kosu.begin(); it != zentai_kosu.end(); ++it) {
-            cout << "key:" << it->first << " value:" << it->second << endl;
-        }
-    }
-
     // とりあえず範囲を出す
     unordered_map<int, int> hanni_kosu;
     rep(i, h) {
@@ -125,19 +122,11 @@ int main() {
     }
     auto backup_hanni_kosu = hanni_kosu;
 
-    // unordered_map<int, int> hanni_kosu2 = hanni_kosu;
-    // if (debug) {
-    //     for (auto it = hanni_kosu.begin(); it != hanni_kosu.end(); ++it) {
-    //         cout << "key:" << it->first << " value:" << it->second << endl;
-    //     }
-    // }
-
     // 移動しながら頑張る
     int ans   = 0;
     int key   = 0;
     int value = 0;
 
-    if (debug) cout << "height-h :" << height - h << " width-w :" << width - w << endl;
     for (int i = 0; i <= height - h; ++i) {
         if (i > 0) {
             // バックアップから読み出し
@@ -166,14 +155,7 @@ int main() {
             if (hanni_kosu.find(key) == hanni_kosu.end() || value - hanni_kosu[key] > 0) ans += 1;
         }
 
-        if (debug) {
-            cout << "---hannikosuu---" << endl;
-            for (auto it = hanni_kosu.begin(); it != hanni_kosu.end(); ++it) {
-                cout << "key:" << it->first << " value:" << it->second << endl;
-            }
-            cout << "i:" << i << " j:" << 0 << " ans:" << ans << endl;
-        } else
-            cout << ans << " ";
+        cout << ans << " ";
 
         for (int j = 1; j <= width - w; ++j) {
             // 横に移動
@@ -194,14 +176,7 @@ int main() {
                 if (hanni_kosu.find(key) == hanni_kosu.end() || value - hanni_kosu[key] > 0) ans += 1;
             }
 
-            if (debug) {
-                cout << "---hannikosuu---" << endl;
-                for (auto it = hanni_kosu.begin(); it != hanni_kosu.end(); ++it) {
-                    cout << "key:" << it->first << " value:" << it->second << endl;
-                }
-                cout << "i:" << i << " j:" << j << " ans:" << ans << endl;
-            } else
-                cout << ans << " ";
+            cout << ans << " ";
         }
         cout << endl;
     }
