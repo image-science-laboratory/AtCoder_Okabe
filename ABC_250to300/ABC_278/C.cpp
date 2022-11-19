@@ -19,8 +19,6 @@ const double PI = 3.141592653589793;
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 #define mod107(m) m % 1000000007
 #define mod998(m) m % 998244353
-#define m107      1000000007
-#define m998      998244353
 typedef long long int                  ll;
 typedef vector<ll>                     vll;
 typedef vector<vector<ll>>             vvll;
@@ -40,27 +38,33 @@ typedef pair<ll, ll>                   pll;
 typedef pair<ll, string>               pls;
 typedef pair<string, ll>               psl;
 typedef pair<int, int>                 pii;
-typedef pair<int, string>              pis;
-typedef pair<string, int>              psi;
-
-typedef unordered_map<int, int> uii;
 
 int main() {
-    bool debug = true;
+    bool debug = false;
+    ll   n, q;
+    cin >> n >> q;
 
-    uii a;
-    a[1] = 3;
-    a[2] = 4;
-    a[3] = 5;
+    set<pii> dict;
 
-    uii b = a;
-    b[1] -= 3;
-    b[4] = 334;
-    b.erase(2);
+    int t, a, b;
+    rep(i, q) {
+        scanf("%d %d %d", &t, &a, &b);
+        //  if(debug)
+        // for (auto itr = dict.begin(); itr != dict.end(); ++itr) {
+        //     cout << (*itr).first << "-" << (*itr).second << " ";
+        // }
+        // cout << endl;
 
-    a = b;
-    for (auto it = a.begin(); it != a.end(); ++it) {
-        cout << it->first << " " << it->second << endl;
+        if (t == 1) {
+            dict.insert(pii(a, b));
+        } else if (t == 2) {
+            dict.erase(pii(a, b));
+        } else {
+            if (dict.count(pii(a, b)) == 1 && dict.count(pii(b, a)) == 1)
+                cout << "Yes" << endl;
+            else
+                cout << "No" << endl;
+        }
     }
 
     return 0;

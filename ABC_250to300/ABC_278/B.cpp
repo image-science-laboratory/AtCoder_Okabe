@@ -8,7 +8,6 @@
 #include <map>
 #include <numeric>
 #include <queue>
-#include <set>
 #include <stack>
 #include <string>
 #include <unordered_map>
@@ -19,8 +18,6 @@ const double PI = 3.141592653589793;
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 #define mod107(m) m % 1000000007
 #define mod998(m) m % 998244353
-#define m107      1000000007
-#define m998      998244353
 typedef long long int                  ll;
 typedef vector<ll>                     vll;
 typedef vector<vector<ll>>             vvll;
@@ -39,28 +36,26 @@ typedef vector<vector<string>>         vvs;
 typedef pair<ll, ll>                   pll;
 typedef pair<ll, string>               pls;
 typedef pair<string, ll>               psl;
-typedef pair<int, int>                 pii;
-typedef pair<int, string>              pis;
-typedef pair<string, int>              psi;
-
-typedef unordered_map<int, int> uii;
 
 int main() {
-    bool debug = true;
+    ll h, m;
+    cin >> h >> m;
 
-    uii a;
-    a[1] = 3;
-    a[2] = 4;
-    a[3] = 5;
+    ll current = h * 60 + m;
+    while (true) {
+        ll hour    = current / 60;
+        ll minutes = current % 60;
+        // cout << "hour:" << hour << " minutes:" << minutes << endl;
 
-    uii b = a;
-    b[1] -= 3;
-    b[4] = 334;
-    b.erase(2);
+        ll hour2    = (hour / 10 * 10) + (minutes / 10);
+        ll minutes2 = ((hour % 10) * 10) + (minutes % 10);
+        if (0 <= hour2 && hour2 <= 23 && 0 <= minutes2 && minutes2 <= 59) {
+            cout << hour << " " << minutes << endl;
+            return 0;
+        }
 
-    a = b;
-    for (auto it = a.begin(); it != a.end(); ++it) {
-        cout << it->first << " " << it->second << endl;
+        current += 1;
+        if (current == 24 * 60) current = 0;
     }
 
     return 0;
