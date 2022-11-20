@@ -7,3 +7,5 @@ p h1
 p h2
 p h1.object_id 
 p h2.object_id
+
+puts "hogehoge"
