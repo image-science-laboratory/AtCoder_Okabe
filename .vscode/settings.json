@@ -138,7 +138,7 @@
 		"javascript": "node",
 		"java": "cd $dir && javac $fileName && java $fileNameWithoutExt",
 		"c": "cd $dir && gcc $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
-		"cpp": "cd $dir && g++ -std=gnu++17 -Wall -pthread -O2 $fileName -o $fileNameWithoutExt.exe && $dir$fileNameWithoutExt.exe",
+		"cpp": "cd $dir && g++ -std=gnu++17 -Wall -pthread -O2 $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
 		"objective-c": "cd $dir && gcc -framework Cocoa $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
 		"php": "php",
 		"python": "python -u",
