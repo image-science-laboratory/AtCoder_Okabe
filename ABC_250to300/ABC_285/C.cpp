@@ -14,6 +14,40 @@
 #include <unordered_map>
 #include <vector>
 
+typedef int XY_Type;
+class XY {
+  public:
+    XY_Type y;
+    XY_Type x;
+
+    XY() {}
+
+    XY(XY_Type y, XY_Type x) {
+        this->y = y;
+        this->x = x;
+    }
+
+    XY operator+(const XY &dst) {
+        return XY(this->y + dst.y, this->x + dst.x);
+    }
+
+    XY operator-(const XY &dst) {
+        return XY(this->y - dst.y, this->x - dst.x);
+    }
+
+    XY operator*(const XY_Type &dst) {
+        return XY(this->y * dst, this->x * dst);
+    }
+
+    XY operator/(const XY_Type &dst) {
+        return XY(this->y / dst, this->x / dst);
+    }
+
+    double norm() {
+        return sqrt(this->y * this->y + this->x * this->x);
+    }
+};
+
 using namespace std;
 const double PI = 3.141592653589793;
 #define rep(i, n) for (int i = 0; i < (int)(n); ++i)
@@ -52,21 +86,20 @@ typedef unordered_map<ll, string>      umls;
 typedef unordered_map<string, ll>      umsl;
 
 int main() {
-    bool debug = true;
-    ll   n;
-    cin >> n;
+    bool   debug = true;
     string str;
     cin >> str;
 
-    for (int i = 1; i < n; ++i) {
-        int count = 0;
-        rep(j, n) {
-            if (j + i >= n) break;
-            if (str[j] == str[j + i]) break;
-            count += 1;
-        }
-        cout << count << endl;
+    ll ans = 0;
+    rep(i, str.size()) {
+        char c = str[i];
+        // cout << "c:" << c << " c-A:" << (c - 'A') << " pow:" << pow(26, i) << endl;
+        int diff = c - 'A' + 1;
+        ans *= 26;
+        ans += diff;
     }
+
+    cout << ans << endl;
 
     return 0;
 }
