@@ -34,5 +34,6 @@ while len(que) > 0:
 # end of True 
 
 
+
 if (cnt0 == 2 and cnt1 == n -2) and len(flag) == n: print("Yes")
 else: print("No")
