@@ -3,8 +3,9 @@
 		{
 			"type": "cppbuild",
 			"label": "C/C++: g++.exe アクティブなファイルのビルド",
-			"command": "C:\\MinGW\\bin\\g++.exe",
+			"command": "g++",
 			"args": [
+				"-std=gnu++17",
 				"-g",
 				"${file}",
 				"-o",
