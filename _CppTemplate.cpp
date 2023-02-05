@@ -88,6 +88,13 @@ typedef unordered_map<string, ll>      umsl;
 int main() {
     bool debug = true;
     ll   n;
+    cin >> n;
+
+    ll a, b;
+    rep(i, n) {
+        cin >> a >> b;
+        cout << a + b << endl;
+    }
 
     return 0;
 }
