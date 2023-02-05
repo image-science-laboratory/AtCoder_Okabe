@@ -51,9 +51,10 @@ typedef unordered_map<string, int>     umsi;
 typedef unordered_map<ll, string>      umls;
 typedef unordered_map<string, ll>      umsl;
 
+bool debug = true;
+
 int main() {
-    bool debug = true;
-    ll   n;
+    ll n;
 
     return 0;
 }
