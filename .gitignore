@@ -1,3 +1,6 @@
+
+*.dSYM
+
 # Prerequisites
 *.d
 
