@@ -1,4 +1,6 @@
 typedef int XY_Type;
+#define X first
+#define Y second
 class XY {
   public:
     XY_Type y;
