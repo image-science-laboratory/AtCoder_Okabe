@@ -5,7 +5,7 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "MAC g++ Debug",
+			"name": "Mac g++ Debug",
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${fileDirname}/${fileBasenameNoExtension}.exe",
@@ -16,6 +16,27 @@
 			"externalConsole": true,
 			"MIMode": "lldb",
 			//"miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
+			"setupCommands": [
+				{
+					"description": "gdb の再フォーマットを有効にする",
+					"text": "-enable-pretty-printing",
+					"ignoreFailures": true
+				}
+			],
+			"preLaunchTask": "C/C++: g++.exe アクティブなファイルのビルド"
+		},
+		{
+			"name": "Win g++ Debug",
+			"type": "cppdbg",
+			"request": "launch",
+			"program": "${fileDirname}/${fileBasenameNoExtension}.exe",
+			"args": [],
+			"stopAtEntry": false,
+			"cwd": "${fileDirname}",
+			"environment": [],
+			"externalConsole": false,
+			"MIMode": "gdb",
+			"miDebuggerPath": "C:\\TDM-GCC-64\\gdb64\\bin\\gdb.exe",
 			"setupCommands": [
 				{
 					"description": "gdb の再フォーマットを有効にする",
