@@ -28,12 +28,12 @@ const double PI = 3.141592653589793;
 #define m107            1000000007
 #define m998            998244353
 typedef long long int                  ll;
-typedef vector<ll>                     vll;
-typedef vector<vector<ll>>             vvll;
-typedef vector<vector<vector<ll>>>     vvvll;
 typedef vector<int>                    vi;
 typedef vector<vector<int>>            vvi;
 typedef vector<vector<vector<int>>>    vvvi;
+typedef vector<ll>                     vll;
+typedef vector<vector<ll>>             vvll;
+typedef vector<vector<vector<ll>>>     vvvll;
 typedef vector<float>                  vf;
 typedef vector<vector<float>>          vvf;
 typedef vector<vector<vector<float>>>  vvvf;
@@ -62,13 +62,13 @@ typedef unordered_set<string>          uss;
 #define cout16 std::cout << std::fixed << std::setprecision(16)
 
 // endl no flush (flush処理は重たい)
-#define endlnf "\n"
+#define elnf "\n"
 
-// 出力の高速化
+// 競プロ用環境セッティング
 void preprocess() {
     std::cin.tie(nullptr);
     std::ios_base::sync_with_stdio(false);
-} // end func
+} // end of func
 
 bool debug = true;
 
@@ -77,4 +77,4 @@ int main() {
     ll n;
 
     return 0;
-}
+} // end of main
