@@ -12,17 +12,21 @@
 #include <stack>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 using namespace std;
 const double PI = 3.141592653589793;
-#define rep(i, n) for (int i = 0; i < (int)(n); ++i)
-#define mod107(m) m % 1000000007
-#define mod998(m) m % 998244353
-#define m107      1000000007
-#define m998      998244353
-#define Y         first
-#define X         second
+#define rep(i, n)       for (int i = 0; i < (int)(n); ++i)
+#define repe(i, n)      for (int i = 0; i <= (int)(n); ++i)
+#define rep1(i, n)      for (int i = 1; i < (int)(n); ++i)
+#define rep1n(i, n)     for (int i = 1; i <= (int)(n); ++i)
+#define repab(i, a, b)  for (int i = (a); i < (b); ++i)
+#define repabn(i, a, b) for (int i = (a); i <= (b); ++i)
+#define mod107(m)       m % 1000000007
+#define mod998(m)       m % 998244353
+#define m107            1000000007
+#define m998            998244353
 typedef long long int                  ll;
 typedef vector<ll>                     vll;
 typedef vector<vector<ll>>             vvll;
@@ -45,15 +49,31 @@ typedef pair<ll, ll>                   pll;
 typedef pair<ll, string>               pls;
 typedef pair<string, ll>               psl;
 typedef unordered_map<int, int>        umii;
-typedef unordered_map<ll, ll>          umll;
+typedef unordered_map<ll, ll>          umllll;
 typedef unordered_map<int, string>     umis;
 typedef unordered_map<string, int>     umsi;
-typedef unordered_map<ll, string>      umls;
-typedef unordered_map<string, ll>      umsl;
+typedef unordered_map<ll, string>      umlls;
+typedef unordered_map<string, ll>      umsll;
+typedef unordered_set<int>             usi;
+typedef unordered_set<ll>              usll;
+typedef unordered_set<string>          uss;
+
+// 数値を16桁で表示(誤差が厳しい問題に対応)
+#define cout16 std::cout << std::fixed << std::setprecision(16)
+
+// endl no flush (flush処理は重たい)
+#define endlnf "\n"
+
+// 出力の高速化
+void preprocess() {
+    std::cin.tie(nullptr);
+    std::ios_base::sync_with_stdio(false);
+} // end func
 
 bool debug = true;
 
 int main() {
+    preprocess();
     ll n;
 
     return 0;
