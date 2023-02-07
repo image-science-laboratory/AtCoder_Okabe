@@ -87,9 +87,14 @@ typedef unordered_map<string, ll>      umsl;
 
 int main() {
     bool debug = true;
-    ll   n;
-    cout << "welcome to mac gcc!!" << endl;
-    cout << "n:" << 100 << endl;
+    int  a     = true;
+    int  b     = !a;
+    cout << a << " " << b << endl;
+
+    int c = 1;
+    int d = !c;
+    int e = !d;
+    cout << c << " " << d << " " << e << endl;
 
     return 0;
 }
