@@ -82,48 +82,24 @@ bool debug = true;
 
 int main() {
     preprocess();
-    ll n, hoge;
+    ll n;
     cin >> n;
 
-    vll arr(n);
-    ll  maxi = 0;
-    ll  a;
+    vll manga(n + 100, 2);
     rep(i, n) {
-        cin >> a;
-        maxi   = max(a, maxi);
-        arr[i] = a;
+        ll hoge;
+        cin >> hoge;
+        manga[hoge] = 1;
     }
-    maxi += 1;
-    sort(arr.begin(), arr.end());
 
-    deque<ll> deq;
-    rep(i, n) deq.emplace_back(arr[i]);
-
-    ll prev  = 0;
-    ll count = 0;
-    while (deq.size() > 0) {
-        if (deq.front() == prev + 1) {
-            prev += 1;
-            deq.pop_front();
-            while (deq.size() > 0 && deq.front() == prev) {
-                deq.pop_front();
-                deq.emplace_back(maxi);
-                maxi += 1;
-            }
-        } else {
-            if (deq.size() <= 1) break;
-            prev += 1;
-            deq.pop_back();
-            deq.pop_back();
+    for (int i = 1; n >= 0; ++i) {
+        cout << "i:" << i << " n:" << n << endl;
+        n -= manga[i];
+        if (n < 0) {
+            cout << i - 1 << endl;
+            return 0;
         }
     }
-
-    while (deq.size() > 0) {
-        cout << deq.front() << endl;
-        deq.pop_front();
-    }
-
-    cout << prev << endl;
 
     return 0;
 } // end of main
