@@ -20,9 +20,9 @@ const double PI = 3.141592653589793;
 #define rep(i, n)       for (int i = 0; i < (int)(n); ++i)
 #define repe(i, n)      for (int i = 0; i <= (int)(n); ++i)
 #define rep1(i, n)      for (int i = 1; i < (int)(n); ++i)
-#define rep1n(i, n)     for (int i = 1; i <= (int)(n); ++i)
+#define rep1e(i, n)     for (int i = 1; i <= (int)(n); ++i)
 #define repab(i, a, b)  for (int i = (a); i < (b); ++i)
-#define repabn(i, a, b) for (int i = (a); i <= (b); ++i)
+#define repabe(i, a, b) for (int i = (a); i <= (b); ++i)
 #define mod107(m)       m % 1000000007
 #define mod998(m)       m % 998244353
 #define m107            1000000007
