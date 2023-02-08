@@ -15,19 +15,8 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-
 using namespace std;
-const double PI = 3.141592653589793;
-#define rep(i, n)       for (int i = 0; i < (int)(n); ++i)
-#define repe(i, n)      for (int i = 0; i <= (int)(n); ++i)
-#define rep1(i, n)      for (int i = 1; i < (int)(n); ++i)
-#define rep1e(i, n)     for (int i = 1; i <= (int)(n); ++i)
-#define repab(i, a, b)  for (int i = (a); i < (b); ++i)
-#define repabe(i, a, b) for (int i = (a); i <= (b); ++i)
-#define mod107(m)       m % 1000000007
-#define mod998(m)       m % 998244353
-#define m107            1000000007
-#define m998            998244353
+
 typedef long long int                  ll;
 typedef vector<int>                    vi;
 typedef vector<vector<int>>            vvi;
@@ -66,6 +55,18 @@ typedef unordered_set<char>            usc;
 typedef unordered_set<int>             usi;
 typedef unordered_set<ll>              usll;
 typedef unordered_set<string>          uss;
+
+const double PI = 3.141592653589793;
+#define rep(i, n)       for (int i = 0; i < (int)(n); ++i)
+#define repe(i, n)      for (int i = 0; i <= (int)(n); ++i)
+#define rep1(i, n)      for (int i = 1; i < (int)(n); ++i)
+#define rep1e(i, n)     for (int i = 1; i <= (int)(n); ++i)
+#define repab(i, a, b)  for (int i = (a); i < (b); ++i)
+#define repabe(i, a, b) for (int i = (a); i <= (b); ++i)
+#define mod107(m)       m % 1000000007
+#define mod998(m)       m % 998244353
+#define m107            1000000007
+#define m998            998244353
 
 // ”’l‚ð16Œ…‚Å•\Ž¦(Œë·‚ªŒµ‚µ‚¢–â‘è‚É‘Î‰ž)
 #define cout16 std::cout << std::fixed << std::setprecision(16)
