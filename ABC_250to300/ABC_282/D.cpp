@@ -80,82 +80,39 @@ void preprocess() {
     std::ios_base::sync_with_stdio(false);
 } // end of func
 
-bool debug = false;
+bool   debug = false;
+double a, b;
 
-vvi graph(200100, vi(2, -1)); // グラフ番号 白黒
-
-// 黒のノード数 白のノード数 グラフの要素数 黒のエッジ数 白のエッジ数
-bool dfs(int graph_no, int node, int color, vi &ans) {
-    ans[2] += 1;
-    ans[color] += 1;
-
-    graph[node][0] = graph_no;
-    graph[node][1] = color;
-
-    bool flag = true;
-    for (int i = 2; i < graph[node].size(); ++i) {
-        ans[color + 3] += 1;
-        int next = graph[node][i];
-
-        // 同じ色があると問題
-        if (graph[next][1] == color) {
-            cout << 0 << endl;
-            exit(0);
-        }
-        if (graph[next][1] == !color) continue;
-        flag = flag && dfs(graph_no, next, !color, ans);
-    }
-    return flag;
+double f(ll x) {
+    double g = 1 + x;
+    double t = b * x;
+    return a / sqrt(g) + t;
 }
 
 int main() {
     preprocess();
-    ll n, m, u, v;
-    cin >> n >> m;
+    cin >> a >> b;
 
-    rep(i, m) {
-        cin >> u >> v;
-        u -= 1;
-        v -= 1;
-        graph[u].emplace_back(v);
-        graph[v].emplace_back(u);
+    ll     l = 0, r = a / b;
+    double threshold = 10000;
+    while (abs(l - r) > threshold) {
+        ll l2 = (2 * l + r) / 3;
+        ll r2 = (l + 2 * r) / 3;
+
+        double f1 = f(l2);
+        double f2 = f(r2);
+        if (f1 < f2)
+            r = r2;
+        else
+            l = l2;
     }
 
-    vvi answers;
-    rep(i, n) {
-        if (graph[i][0] != -1) continue;
-        vi   ans1(5, 0);
-        bool isbip = dfs(i, i, 0, ans1);
-        if (isbip) answers.emplace_back(ans1);
+    double ans = a;
+    for (ll i = l; i <= r; ++i) {
+        double ff = f(i);
+        ans       = min(ff, ans);
     }
-
-    ll ans = n * (n - 1) / 2 - m;
-    rep(i, answers.size()) {
-        ll bnum = answers[i][0];
-        ll wnum = answers[i][1];
-        ans -= bnum * (bnum - 1) / 2;
-        ans -= wnum * (wnum - 1) / 2;
-    }
-
-    if (debug) cout
-                   << "bip:" << n << " answers.length:" << answers.size() << endl;
-    cout << ans << endl;
-
-    if (debug) {
-        cout << endl;
-        rep(i, answers.size()) {
-            for (auto hoge : answers[i])
-                cout << hoge << " ";
-            cout << endl;
-        }
-        cout << endl;
-
-        // rep(i, n) {
-        //     for (int hoge : graph[i])
-        //         cout << hoge << " ";
-        //     cout << endl;
-        // }
-    }
+    cout16 << ans << endl;
 
     return 0;
 } // end of main
