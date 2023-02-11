@@ -7,9 +7,7 @@ x = int(input())
 dp = [False for i in range(x + 1)]
 dp[0] = True
 
-i = 0
-while i < x:
-	i += 1
+for i in range(1, x + 1):
 	if i in b: continue 
 	for a in arr:
 		if i - a < 0: continue 
