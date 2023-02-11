@@ -2,19 +2,16 @@ import queue
 stack = queue.LifoQueue()
 
 n, m = list(map(int, input().split(" ")))
-
 # 例外処理
 if m == 0: 
-	ans = [i + 1 for i in range(n)]
-	print(" ".join(list(map(str, ans))))
+	print(" ".join(list(map(str, [i + 1 for i in range(n)]))))
 	exit(0)
+# end of if 
 
-arr = list(map(int, input().split(" ")))
-arr = set(arr)
+arr = set(list(map(int, input().split(" "))))
 
 ans = []
-for ii in range(n): # 1 ~ n で列挙する方法を知らないので無理やり実装
-	i = ii + 1
+for i in range(1, n + 1):
 	# レ点が来るときはいったんスタックに貯めておく
 	if i in arr:
 		stack.put(i)
