@@ -4,7 +4,7 @@ stack = queue.LifoQueue()
 n, m = list(map(int, input().split(" ")))
 # 例外処理
 if m == 0: 
-	print(" ".join(list(map(str, [i + 1 for i in range(n)]))))
+	print(" ".join([str(i + 1) for i in range(n)]))
 	exit(0)
 # end of if 
 
