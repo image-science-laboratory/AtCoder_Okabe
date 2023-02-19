@@ -80,8 +80,6 @@ void preprocess() {
     std::ios_base::sync_with_stdio(false);
 } // end of func
 
-bool debug = true;
-
 ll GCD(ll a, ll b) {
     if (a == 0 || b == 0) return 0;
     while (a != 0 && b != 0) {
@@ -98,37 +96,30 @@ ll LCM(ll a, ll b) {
     return a * b / GCD(a, b);
 }
 
+bool debug = true;
+
 int main() {
     preprocess();
     ll t, n, d, k;
     cin >> t;
     rep(hoge, t) {
         cin >> n >> d >> k;
+        d = d % n;
 
         // dがnの倍数なら毎回1プラスされるはず
         if (d % n == 0) {
             cout << k - 1 << elnf;
+            continue;
         }
 
-        // nがdの倍数なら
-        else if (n % d == 0) {
-            ll once      = n / d;
-            ll kurikaesi = k / once;
-            ll ans       = kurikaesi * once;
-
-            ll nokori = k % once;
-            ans       = ans + nokori - 1;
-
-            ll mod = ans / once;
-            cout << ((ans * d) % n) + mod << elnf;
-
-        }
-
-        // nがdの倍数以外なら
-        else {
-            ll ans = ((k - 1) * d) % n;
-            cout << ans << elnf;
-        }
+        // 最小公倍数で考える
+        ll once      = std::lcm(n, d) / d;
+        ll kurikaesi = k / once;
+        ll ans       = kurikaesi * once;
+        ll nokori    = k % once;
+        ans          = ans + nokori - 1;
+        ll mod       = ans / once;
+        cout << ((ans * d) % n) + mod << elnf;
     }
 
     return 0;
