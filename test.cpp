@@ -86,15 +86,8 @@ typedef unordered_map<ll, string>      umls;
 typedef unordered_map<string, ll>      umsl;
 
 int main() {
-    bool debug = true;
-    int  a     = true;
-    int  b     = !a;
-    cout << a << " " << b << endl;
-
-    int c = 1;
-    int d = !c;
-    int e = !d;
-    cout << c << " " << d << " " << e << endl;
-
+    ll a = 8;
+    ll b = 6;
+    cout << std::lcm(a, b) << " " << std::gcd(a, b) << endl;
     return 0;
 }
