@@ -18,6 +18,9 @@
 using namespace std;
 
 typedef long long int                  ll;
+typedef vector<bool>                   vb;
+typedef vector<vector<bool>>           vvb;
+typedef vector<vector<vector<bool>>>   vvvb;
 typedef vector<int>                    vi;
 typedef vector<vector<int>>            vvi;
 typedef vector<vector<vector<int>>>    vvvi;
