@@ -23,18 +23,22 @@ dp[0][s][0] = 1
 		if j != x
 			# 連結成分の和
 			graph[j].each do |g|
-				dp[i][j][0] = (dp[i][j][0] + dp[i - 1][g][0]) % MOD
-				dp[i][j][1] = (dp[i][j][1] + dp[i - 1][g][1]) % MOD
+				dp[i][j][0] += dp[i - 1][g][0]
+				dp[i][j][1] += dp[i - 1][g][1]
 			end
+
+			dp[i][j][0] = dp[i][j][0] % MOD 
+			dp[i][j][1] = dp[i][j][1] % MOD
 		# j == x のときは交差
 		else 
 			graph[j].each do |g|
-				dp[i][j][0] = (dp[i][j][0] + dp[i - 1][g][1]) % MOD
-				dp[i][j][1] = (dp[i][j][1] + dp[i - 1][g][0]) % MOD
+				dp[i][j][0] += dp[i - 1][g][1]
+				dp[i][j][1] += dp[i - 1][g][0]
 			end
 		end
 
-
+		dp[i][j][0] = dp[i][j][0] % MOD 
+		dp[i][j][1] = dp[i][j][1] % MOD
 	end
 end
 
