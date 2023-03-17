@@ -85,40 +85,25 @@ void preprocess() {
 
 bool debug = true;
 
+ll func(ll a, ll b) {
+    return a * a * a + a * a * b + a * b * b + b * b * b;
+}
+
 int main() {
     preprocess();
-    ll n, k, x, a;
-    cin >> n >> k >> x;
+    ll n;
+    cin >> n;
 
-    priority_queue<ll> pq;
-    rep(i, n) {
-        cin >> a;
-        pq.push(a);
-    }
-
-    while (k > 0 && pq.top() > 0) {
-        ll top = pq.top();
-        pq.pop();
-
-        if (top <= x) {
-            k -= 1;
-            pq.push(0);
-            continue;
+    ll x = pow(10, 18) + 100;
+    ll j = pow(10, 6);
+    rep(i, pow(10, 6)) {
+        while (func(i, j) >= n && j >= 0) {
+            x = min(x, func(i, j));
+            j -= 1;
         }
-
-        ll kk = min(k, top / x);
-        k -= kk;
-        top -= kk * x;
-        pq.push(top);
     }
 
-    ll ans = 0;
-    while (pq.empty() == false) {
-        ans += pq.top();
-        pq.pop();
-    }
-
-    cout << ans << endl;
+    cout << x << endl;
 
     return 0;
 } // end of main
