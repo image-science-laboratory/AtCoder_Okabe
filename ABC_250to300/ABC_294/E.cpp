@@ -83,14 +83,72 @@ void preprocess() {
     std::ios_base::sync_with_stdio(false);
 } // end of func
 
-bool debug = true;
+bool debug = false;
 
 int main() {
     preprocess();
+    ll L, n1, n2;
+    cin >> L >> n1 >> n2;
 
-    set<int> s;
-    rep(i, 10) s.insert(10 - i);
-    cout << *s.begin() << " " << *s.end() << endl;
+    vector<pll> arr(n1), brr(n2);
+    ll          v, l;
+    rep(i, n1) {
+        cin >> v >> l;
+        arr[i] = pll(v, l);
+    }
+    rep(i, n2) {
+        cin >> v >> l;
+        brr[i] = pll(v, l);
+    }
+
+    ll  uind = 0, dind = 0;
+    pll urange(0, arr[0].second);
+    pll drange(0, brr[0].second);
+    ll  uvalue = arr[0].first, dvalue = brr[0].first;
+    ll  ans = 0;
+    while (uind < n1 && dind < n2) {
+        if (debug) cout << "urange(" << urange.first << "," << urange.second << ") drange(" << drange.first << "," << drange.second << ") values(" << uvalue << "," << dvalue << ")  ans:" << ans << endl;
+        int nextrow = 1;
+        if (urange.second < drange.first) {
+            nextrow = 1;
+        } else if (drange.second < urange.first) {
+            nextrow = 2;
+        } else if (urange.first < drange.first && drange.second < urange.second) {
+            if (uvalue == dvalue) ans += drange.second - drange.first;
+            nextrow = 2;
+        } else if (drange.first < urange.first && urange.second < drange.second) {
+            if (uvalue == dvalue) ans += urange.second - urange.first;
+            nextrow = 1;
+        } else if (urange.second < drange.second) {
+            if (uvalue == dvalue) ans += urange.second - max(urange.first, drange.first);
+            nextrow = 1;
+        } else if (drange.second < urange.second) {
+            if (uvalue == dvalue) ans += drange.second - max(urange.first, drange.first);
+            nextrow = 2;
+        } else if (urange.first == drange.first && urange.second == drange.second) {
+            if (uvalue == dvalue) ans += drange.second - drange.first;
+            nextrow = 3;
+        }
+
+        if (nextrow % 2 == 1 && uind < n1 - 1) {
+            uind += 1;
+            urange = pll(urange.second, urange.second + arr[uind].second);
+            uvalue = arr[uind].first;
+        } else if (nextrow / 2 == 1 && dind < n2 - 1) {
+            dind += 1;
+            drange = pll(drange.second, drange.second + brr[dind].second);
+            dvalue = brr[dind].first;
+        } else {
+            break;
+        }
+    }
+
+    if (uvalue == dvalue && urange.first != drange.first) {
+        ans += L - max(urange.first, drange.first);
+    }
+
+    if (debug) cout << "urange(" << urange.first << "," << urange.second << ") drange(" << drange.first << "," << drange.second << ") values(" << uvalue << "," << dvalue << ")  ans:" << ans << endl;
+    cout << ans << endl;
 
     return 0;
 } // end of main

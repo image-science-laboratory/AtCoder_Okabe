@@ -87,10 +87,19 @@ bool debug = true;
 
 int main() {
     preprocess();
-
-    set<int> s;
-    rep(i, 10) s.insert(10 - i);
-    cout << *s.begin() << " " << *s.end() << endl;
+    int h, w;
+    cin >> h >> w;
+    int c;
+    rep(i, h) {
+        rep(j, w) {
+            cin >> c;
+            if (c == 0)
+                cout << '.';
+            else
+                cout << (char)('A' + (c - 1));
+        }
+        cout << endl;
+    }
 
     return 0;
 } // end of main

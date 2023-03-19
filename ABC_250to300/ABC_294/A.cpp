@@ -87,10 +87,14 @@ bool debug = true;
 
 int main() {
     preprocess();
-
-    set<int> s;
-    rep(i, 10) s.insert(10 - i);
-    cout << *s.begin() << " " << *s.end() << endl;
+    ll n;
+    cin >> n;
+    rep(i, n) {
+        ll hoge;
+        cin >> hoge;
+        if (hoge % 2 == 0) cout << hoge << " ";
+    }
+    cout << endl;
 
     return 0;
 } // end of main

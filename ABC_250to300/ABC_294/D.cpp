@@ -87,10 +87,24 @@ bool debug = true;
 
 int main() {
     preprocess();
+    int n, q;
+    cin >> n >> q;
 
-    set<int> s;
-    rep(i, 10) s.insert(10 - i);
-    cout << *s.begin() << " " << *s.end() << endl;
+    set<int> called;
+    int      last = 1;
+    rep(hoge, q) {
+        int a, b;
+        cin >> a;
+        if (a == 1) {
+            called.insert(last);
+            last += 1;
+        } else if (a == 2) {
+            cin >> b;
+            called.erase(b);
+        } else {
+            cout << *called.begin() << elnf;
+        }
+    }
 
     return 0;
 } // end of main
